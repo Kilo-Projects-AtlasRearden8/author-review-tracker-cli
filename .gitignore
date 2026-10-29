@@ -3,3 +3,4 @@ __pycache__/
 .venv/
 .arc_tracker/
 *.tmp
+*.egg-info/

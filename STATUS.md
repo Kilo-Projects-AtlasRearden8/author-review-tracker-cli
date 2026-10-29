@@ -7,8 +7,8 @@ for authors to track ARC readers, review requests, and follow-ups.
 
 Components:
 
-* `src/arc_tracker/models.py` — dataclasses for `Reader`, `ReviewRequest`,
-  `FollowUp` (statuses: pending, mailed, received, declined).
+* `src/arc_tracker/models.py` — dataclasses for `Reader`, `ReviewRequest`
+  (statuses: pending, mailed, received, declined), `FollowUp`.
 * `src/arc_tracker/storage.py` — atomic local JSON storage (`Store`) with
   graceful handling of missing/corrupt files.
 * `src/arc_tracker/date_utils.py` — date math: days between timestamps,
@@ -21,10 +21,13 @@ Components:
   `request`, `list-requests`, `follow-up`, `mark-sent`, `mark-received`,
   `mark-declined`, `totals`, `due`, `export`.
 * `tests/` — pytest suite: `test_totals.py`, `test_dates.py`,
-  `test_storage.py` (7 tests).
-* `pyproject.toml` — packaging with `arc-tracker` console script entry point.
+  `test_storage.py`, `test_cli.py`, `test_export.py` (12 tests).
+* `pyproject.toml` — packaging with `arc-tracker` console script entry point
+  (verified build + install in a venv).
+* `.gitignore` — excludes `__pycache__`, `.venv`, `.arc_tracker`, `*.tmp`.
 * `LICENSE` — MIT, `Copyright (c) 2026 Asdale Dynamics, LLC`.
-* `README.md` — install/usage guide crediting Asdale Dynamics, LLC.
+* `README.md` — beginner-friendly install/usage guide crediting Asdale
+  Dynamics, LLC.
 * `STATUS.md` — this file.
 
 ## How to run it
@@ -52,12 +55,14 @@ Storage path defaults to `~/.arc_tracker/data.json`; override with
 
 ## Verification results
 
-* `python3 -m pytest -q` → **7 passed** (totals counts and by-status,
+* `python3 -m pytest -q` → **12 passed** (totals counts and by-status,
   follow-up totals, date math incl. due dates/overdue, JSON round-trip
-  persistence, corrupt-file degradation).
-* CLI smoke test passed end to end: add reader, request review, list,
-  mark-sent, follow-up, totals, CSV export — all produced correct output and
-  a valid CSV file.
+  persistence, corrupt-file degradation, CLI add/list/request/totals/export/
+  due/status-filter flows, CSV export contents).
+* `pip install -e .` → builds and installs cleanly in a venv.
+* `arc-tracker --help` → console script works, all subcommands registered.
+* CLI smoke test → end-to-end add reader → request → mark-sent → follow-up →
+  totals → CSV export all produced correct output and a valid CSV file.
 * Python 3.13.5, stdlib-only (no third-party runtime dependencies).
 
 ## Known gaps
