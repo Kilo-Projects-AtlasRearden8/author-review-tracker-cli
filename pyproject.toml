@@ -1,0 +1,18 @@
+[project]
+name = "arc-tracker"
+version = "0.1.0"
+description = "Local-first CLI for authors to track ARC readers, review requests, and follow-ups."
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = []
+license = {text = "MIT"}
+
+[project.scripts]
+arc-tracker = "arc_tracker.cli:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
