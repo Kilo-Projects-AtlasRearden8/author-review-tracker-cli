@@ -1,6 +1,11 @@
-__pycache__/
-*.py[cod]
-.venv/
-.arc_tracker/
-*.tmp
 *.egg-info/
+*.py[cod]
+*.pyc
+*.tmp
+.arc_tracker/
+.env
+.env.*
+.venv/
+__pycache__/
+dist/*.tmp
+node_modules/
